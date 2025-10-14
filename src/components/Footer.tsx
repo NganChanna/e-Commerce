@@ -25,7 +25,6 @@ const Footer = () => {
     "Desktops",
     "Phones",
   ];
-
   const categories2: string[] = [
     "Watches",
     "Tvs",
@@ -68,101 +67,125 @@ const Footer = () => {
   ];
 
   return (
-    <div className="w-full h-auto footer space-y-5 py-16 lg:py-0">
+    <footer className="w-full bg-gray-100 text-gray-800 dark:bg-[#0F172A] dark:text-gray-200 transition-colors duration-300">
       {/* Main Content */}
-      <section
-        className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4
-          gap-10 md:gap-8 lg:gap-4
-          p-4 md:p-8 lg:px-20 lg:py-8"
-      >
-        <article className="text-center space-y-4">
-          <h1 className="font-semibold text-2xl">About</h1>
-          <p className="text-start">
-            <span className="font-semibold mr-1">Zipbuy</span>
+      <section className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 lg:gap-4 px-6 md:px-10 lg:px-20 py-14 border-b border-gray-300 dark:border-gray-700">
+        {/* About */}
+        <article className="space-y-4">
+          <h1 className="font-bold text-2xl tracking-wide">About</h1>
+          <p className="leading-relaxed text-gray-700 dark:text-gray-300">
+            <span className="font-semibold mr-1 text-blue-600 dark:text-blue-400">
+              Zipbuy
+            </span>
             {about}
           </p>
         </article>
-        <article className="text-center space-y-4">
-          <h1 className="font-semibold text-2xl">Categories</h1>
-          <section className="flex justify-center space-x-4">
-            <ul>
+
+        {/* Categories */}
+        <article className="space-y-4">
+          <h1 className="font-bold text-2xl tracking-wide">Categories</h1>
+          <div className="flex justify-start space-x-10">
+            <ul className="space-y-2">
               {categories1
                 .slice()
                 .sort((a, b) => a.localeCompare(b))
                 .map((category, index) => (
                   <li key={index}>
-                    <span className="underline-hover">{category}</span>
+                    <span className="hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-all duration-200 underline-offset-4 hover:underline">
+                      {category}
+                    </span>
                   </li>
                 ))}
             </ul>
-            <ul>
+            <ul className="space-y-2">
               {categories2
                 .slice()
                 .sort((a, b) => a.localeCompare(b))
                 .map((category, index) => (
                   <li key={index}>
-                    <span className="underline-hover">{category}</span>
+                    <span className="hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-all duration-200 underline-offset-4 hover:underline">
+                      {category}
+                    </span>
                   </li>
                 ))}
             </ul>
-          </section>
+          </div>
         </article>
-        <article className="text-center space-y-4">
-          <h1 className="font-semibold text-2xl">Reach Us</h1>
-          <ul>
+
+        {/* Reach Us */}
+        <article className="space-y-4">
+          <h1 className="font-bold text-2xl tracking-wide">Reach Us</h1>
+          <ul className="space-y-3">
             {reachUs.map((reach, index) => (
               <li
                 key={index}
-                className="flex items-center space-x-2 text-start space-y-2"
+                className="flex items-start space-x-3 text-gray-700 dark:text-gray-300"
               >
-                <span className="text-xl">{reach.icon}</span>
+                <span className="text-blue-600 dark:text-blue-400 text-xl mt-1">
+                  {reach.icon}
+                </span>
                 <span>{reach.title}</span>
               </li>
             ))}
           </ul>
         </article>
-        <article className="text-center space-y-4">
-          <h1 className="font-semibold text-2xl">Support</h1>
-          <ul>
+
+        {/* Support */}
+        <article className="space-y-4">
+          <h1 className="font-bold text-2xl tracking-wide">Support</h1>
+          <ul className="space-y-2">
             {supports.map((support, index) => (
               <li key={index}>
-                <span className="underline-hover">{support}</span>
+                <span className="hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer transition-all duration-200 underline-offset-4 hover:underline">
+                  {support}
+                </span>
               </li>
             ))}
           </ul>
         </article>
       </section>
 
-      {/* 2nd Row */}
-      <section
-        className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3
-          gap-10 md:gap-12 lg:gap-30
-          p-4 md:p-8 lg:px-20 lg:py-8"
-      >
+      {/* Second Row */}
+      <section className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 md:px-10 lg:px-20 py-10">
+        {/* Subscribe */}
         <aside className="space-y-4">
-          <h2 className="font-semibold text-lg text-start">
-            First time? Grab 5% off 5 items Limited Stock!
+          <h2 className="font-semibold text-lg">
+            First time? Grab 5% off 5 items!
           </h2>
-          <div className="relative w-full rounded-md bg-white text-black">
-            <Input type="text" placeholder="example@gmail.com" />
-            <FaArrowRight className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 opacity-75" />
+          <div className="relative w-full rounded-md bg-white dark:bg-gray-800 text-black dark:text-white border border-gray-300 dark:border-gray-600">
+            <Input
+              type="text"
+              placeholder="example@gmail.com"
+              className="border-none focus:ring-0 focus:outline-none bg-transparent text-sm"
+            />
+            <FaArrowRight className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-300 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300" />
           </div>
         </aside>
-        <aside className="space-y-4">
-          <h2 className="font-semibold text-lg text-center">Follow Us</h2>
-          <ul className="flex justify-center space-x-4 text-2xl">
+
+        {/* Follow */}
+        <aside className="space-y-4 text-center">
+          <h2 className="font-semibold text-lg">Follow Us</h2>
+          <ul className="flex justify-center space-x-5 text-2xl">
             {follows.map((follow, index) => (
-              <li key={index} className="text-blue-300 cursor-pointer">
+              <li
+                key={index}
+                className="cursor-pointer text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300"
+              >
                 {follow}
               </li>
             ))}
           </ul>
         </aside>
-        <aside className="space-y-4">
-          <h2 className="font-semibold text-lg text-center">Try Our App</h2>
+
+        {/* App Links */}
+        <aside className="space-y-4 text-center">
+          <h2 className="font-semibold text-lg">Try Our App</h2>
           <ul className="flex justify-center space-x-4">
             {apps.map((app, index) => (
-              <li key={index} className="w-28">
+              <li
+                key={index}
+                className="w-28 hover:scale-105 transition-transform duration-300"
+              >
                 <a href={app.link}>
                   <img src={app.img} alt="App Link" className="w-full h-full" />
                 </a>
@@ -172,20 +195,26 @@ const Footer = () => {
         </aside>
       </section>
 
-      {/* Policy & Credit */}
-      <section className="flex flex-col md:flex-row justify-center text-center p-4 space-x-2 border-t-2 border-gray-400">
+      {/* Bottom Policy & Credits */}
+      <section className="flex flex-col md:flex-row justify-center items-center gap-1 md:gap-2 text-center py-5 border-t border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-sm">
         <article>
-          <Link to="#" className="font-semibold">
+          <Link
+            to="#"
+            className="font-semibold hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+          >
             Privacy & Policy
           </Link>
-          <span className="mx-1"> | </span>
+          <span className="mx-2"> | </span>
           Designed & developed by
         </article>
-        <Link to="#" className="text-blue-400 font-semibold">
+        <Link
+          to="#"
+          className="text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-500 transition-colors"
+        >
           Rok Rak Dev
         </Link>
       </section>
-    </div>
+    </footer>
   );
 };
 
