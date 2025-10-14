@@ -100,14 +100,14 @@ export function Navbar() {
             className="hover:text-primary transition"
             onClick={() => setIsOpen(false)}
           >
-            Docs
+            Products
           </Link>
           <Link
             to="#"
             className="hover:text-primary transition"
             onClick={() => setIsOpen(false)}
           >
-            Components
+            Categaries
           </Link>
           <Link
             to="#"
@@ -115,7 +115,7 @@ export function Navbar() {
             onClick={() => setIsOpen(false)}
           >
             <CircleHelpIcon className="h-4 w-4" />
-            Backlog
+            Accessories
           </Link>
           <Link
             to="#"
@@ -123,7 +123,7 @@ export function Navbar() {
             onClick={() => setIsOpen(false)}
           >
             <CircleIcon className="h-4 w-4" />
-            To Do
+            About Us
           </Link>
           <Link
             to="#"
@@ -131,7 +131,7 @@ export function Navbar() {
             onClick={() => setIsOpen(false)}
           >
             <CircleCheckIcon className="h-4 w-4" />
-            Done
+            Contact
           </Link>
         </nav>
       </div>
