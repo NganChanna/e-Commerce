@@ -2,13 +2,8 @@
 
 import * as React from "react";
 import { Link } from "react-router-dom";
-import {
-  Menu,
-  X,
-  CircleCheckIcon,
-  CircleHelpIcon,
-  CircleIcon,
-} from "lucide-react";
+import { Input } from "./ui/input";
+import { Menu, X } from "lucide-react";
 import { ModeToggle } from "./toggleThems";
 
 export function Navbar() {
@@ -31,7 +26,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden md:flex items-center gap-8">
           <Link to="/" className="hover:text-primary transition">
             Home
           </Link>
@@ -44,27 +39,20 @@ export function Navbar() {
           <Link to="#" className="hover:text-primary transition">
             Accessories
           </Link>
+
           <Link
             to="#"
             className="hover:text-primary transition flex items-center gap-2"
           >
-            <CircleHelpIcon className="h-4 w-4" />
-            About Us
-          </Link>
-          <Link
-            to="#"
-            className="hover:text-primary transition flex items-center gap-2"
-          >
-            <CircleIcon className="h-4 w-4" />
+            {/* <CircleIcon className="h-4 w-4" /> */}
             Contact
           </Link>
-          {/* <Link
-            to="#"
-            className="hover:text-primary transition flex items-center gap-2"
-          >
-            <CircleCheckIcon className="h-4 w-4" />
-            Done
-          </Link> */}
+          <Input
+            type="text"
+            placeholder="Search itme ..."
+            className="border-none focus:ring-0 focus:outline-none bg-transparent text-sm"
+          />
+
           <ModeToggle />
         </nav>
 
@@ -114,23 +102,14 @@ export function Navbar() {
             className="flex items-center gap-2 hover:text-primary transition"
             onClick={() => setIsOpen(false)}
           >
-            <CircleHelpIcon className="h-4 w-4" />
             Accessories
           </Link>
+
           <Link
             to="#"
             className="flex items-center gap-2 hover:text-primary transition"
             onClick={() => setIsOpen(false)}
           >
-            <CircleIcon className="h-4 w-4" />
-            About Us
-          </Link>
-          <Link
-            to="#"
-            className="flex items-center gap-2 hover:text-primary transition"
-            onClick={() => setIsOpen(false)}
-          >
-            <CircleCheckIcon className="h-4 w-4" />
             Contact
           </Link>
         </nav>

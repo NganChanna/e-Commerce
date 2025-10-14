@@ -19,11 +19,11 @@ const Footer = () => {
     shipping and secure checkouts.`;
 
   const categories1: string[] = [
-    "Laptops",
-    "Monitors",
-    "Cameras",
-    "Desktops",
-    "Phones",
+    "IPhone",
+    "Samsung",
+    "Vivo",
+    "Xiaomi",
+    "Huawei",
   ];
   const categories2: string[] = [
     "Watches",
@@ -75,7 +75,7 @@ const Footer = () => {
           <h1 className="font-bold text-2xl tracking-wide">About</h1>
           <p className="leading-relaxed text-gray-700 dark:text-gray-300">
             <span className="font-semibold mr-1 text-blue-600 dark:text-blue-400">
-              Zipbuy
+              Maganic
             </span>
             {about}
           </p>
