@@ -30,18 +30,24 @@ export function Navbar() {
           <Link to="/" className="hover:text-primary transition">
             Home
           </Link>
-          <Link to="/" className="hover:text-primary transition">
+          <Link to="/product" className="hover:text-primary transition">
             Products
           </Link>
-          <Link to="/docs" className="hover:text-primary transition">
+          <Link to="/categaries" className="hover:text-primary transition">
             Categaries
           </Link>
-          <Link to="#" className="hover:text-primary transition">
+          <Link to="/accessories" className="hover:text-primary transition">
             Accessories
           </Link>
-
           <Link
-            to="#"
+            to="/about"
+            className="hover:text-primary transition flex items-center gap-2"
+          >
+            {/* <CircleIcon className="h-4 w-4" /> */}
+            About
+          </Link>
+          <Link
+            to="/contact"
             className="hover:text-primary transition flex items-center gap-2"
           >
             {/* <CircleIcon className="h-4 w-4" /> */}
