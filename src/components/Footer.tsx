@@ -35,7 +35,7 @@ const Footer = () => {
 
   const reachUs: { title: string; icon: JSX.Element }[] = [
     { title: "012 345 678 9", icon: <FaPhoneAlt /> },
-    { title: "rokrakdev@gmail.com", icon: <MdEmail /> },
+    { title: "example@gmail.com", icon: <MdEmail /> },
     {
       title: "123 Tech Avenue, Suite 500 Electro City, CA 94016 United State",
       icon: <IoMdPin />,
