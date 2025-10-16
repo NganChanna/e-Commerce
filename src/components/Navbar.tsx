@@ -4,9 +4,9 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import { Input } from "./ui/input";
 import { Menu, X } from "lucide-react";
-import { ModeToggle } from "./toggleThems";
+import { ModeToggle } from "./index";
 
-export function Navbar() {
+const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
@@ -122,4 +122,6 @@ export function Navbar() {
       </div>
     </header>
   );
-}
+};
+
+export default Navbar;
