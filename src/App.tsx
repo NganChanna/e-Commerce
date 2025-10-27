@@ -10,6 +10,7 @@ import {
   Product,
   Categaries,
 } from "./pages/index.ts";
+import AccessoryDetails from "./pages/AccessoryDetails.tsx";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/product" element={<Product />} />
           <Route path="/categaries" element={<Categaries />} />
           <Route path="/accessories" element={<Accessories />} />
+          <Route path="/accessories/:id" element={<AccessoryDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

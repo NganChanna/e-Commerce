@@ -3,8 +3,8 @@ import {
   createAsyncThunk,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import type { Accessory } from "../../../types/Accessory";
-import { initialAccessoryState } from "../../../types/Accessory";
+import type { Accessory } from "@/types/Accessory";
+import { initialAccessoryState } from "@/types/Accessory";
 
 // Example async thunk to fetch data.json
 export const fetchAccessories = createAsyncThunk<Accessory[]>(

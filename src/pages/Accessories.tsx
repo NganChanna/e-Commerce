@@ -1,36 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import type { RootState, AppDispatch } from "../app/store";
-import { fetchAccessories } from "../app/features/accessories/accessoriesSlice";
+import type { RootState, AppDispatch } from "@/app/store";
+import { fetchAccessories } from "@/app/features/accessories/accessoriesSlice";
+import { useNavigate } from "react-router-dom";
 
 const Accessories: React.FC = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const { data, loading, error } = useSelector(
     (state: RootState) => state.accessories
   );
-  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     dispatch(fetchAccessories());
   }, [dispatch]);
 
-  useEffect(() => {
-    const htmlElement = document.documentElement;
-    if (darkMode) {
-      htmlElement.classList.add("dark");
-    } else {
-      htmlElement.classList.remove("dark");
-    }
-  }, [darkMode]);
-
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 p-6">
-      <button
-        onClick={() => setDarkMode(!darkMode)}
-        className="mb-4 px-4 py-2 rounded-xl bg-blue-500 dark:bg-blue-700 text-white hover:bg-blue-600 dark:hover:bg-blue-600 transition-colors duration-300"
-      >
-        {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
-      </button>
       <h1 className="text-3xl font-bold text-center mb-8 text-blue-600 dark:text-blue-400">
         🛍️ Accessories Store
       </h1>
@@ -81,7 +67,10 @@ const Accessories: React.FC = () => {
                 </span>
               </div>
 
-              <button className="mt-4 w-full bg-blue-500 dark:bg-blue-700 hover:bg-blue-600 dark:hover:bg-blue-600 text-white py-2 rounded-xl transition-colors duration-300">
+              <button
+                onClick={() => navigate(`/accessories/${item.id}`)}
+                className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-xl transition-colors duration-300"
+              >
                 View Details
               </button>
             </div>
