@@ -10,7 +10,7 @@ import { initialAccessoryState } from "../../../types/Accessory";
 export const fetchAccessories = createAsyncThunk<Accessory[]>(
   "accessories/fetchAccessories",
   async () => {
-    const response = await fetch("/data.json");
+    const response = await fetch("/accessories.json");
     if (!response.ok) throw new Error("Failed to fetch data");
     return (await response.json()) as Accessory[];
   }
