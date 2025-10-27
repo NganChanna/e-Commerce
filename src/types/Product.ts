@@ -16,3 +16,15 @@ export interface Product {
   weight: string;
   dimensions: string;
 }
+
+export interface ProductState {
+  data: Product[];
+  loading: boolean;
+  error: string | null;
+}
+
+export const initialProductState: ProductState = {
+  data: [],
+  loading: false,
+  error: null,
+};

@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import accessoriesReducer from "./features/accessories/accessoriesSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    accessories: accessoriesReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
