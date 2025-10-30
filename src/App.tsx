@@ -1,5 +1,4 @@
-import Footer from "./components/Footer";
-import { Navbar } from "./components/index.ts";
+import { Navbar, Footer } from "./components/index.ts";
 import { ThemeProvider } from "./components/themeProvider";
 import { Routes, Route } from "react-router-dom";
 import {
@@ -7,10 +6,11 @@ import {
   About,
   Contact,
   Accessories,
-  Product,
+  AccessoryDetails,
+  Products,
+  ProductDetails,
   Categaries,
 } from "./pages/index.ts";
-import AccessoryDetails from "./pages/AccessoryDetails.tsx";
 
 const App = () => {
   return (
@@ -21,7 +21,8 @@ const App = () => {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/product" element={<Product />} />
+          <Route path="/product" element={<Products />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/categaries" element={<Categaries />} />
           <Route path="/accessories" element={<Accessories />} />
           <Route path="/accessories/:id" element={<AccessoryDetails />} />

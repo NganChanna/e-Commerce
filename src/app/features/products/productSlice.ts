@@ -16,7 +16,7 @@ export const fetchProduct = createAsyncThunk<Product[]>(
 );
 
 const productSlice = createSlice({
-  name: "prducts",
+  name: "products",
   initialState: initialProductState, // ✅ imported from types folder
   reducers: {},
   extraReducers: (builder) => {

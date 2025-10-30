@@ -7,16 +7,15 @@ export interface Product {
   ram: string;
   storage: string;
   image: string;
-  descriptoin: string;
+  description: string;
   warranty: string;
-  compatibility: string;
+  compatibility: string[];
   rating: number;
   review: number;
-  feature: string[];
+  features: string[];
   weight: string;
   dimensions: string;
 }
-
 export interface ProductState {
   data: Product[];
   loading: boolean;

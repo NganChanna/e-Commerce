@@ -1,9 +1,10 @@
 import About from "./About";
 import Accessories from "./Accessories";
+import AccessoryDetails from "./AccessoryDetails";
 import Cart from "./Cart";
 import Home from "./Home";
-import Product from "./Product";
-import ProductDetail from "./ProductDetail";
+import Products from "./Product";
+import ProductDetails from "./ProductDetails";
 import Contact from "./Contact";
 import Categaries from "./Categaries";
 import Search from "./Search";
@@ -11,9 +12,10 @@ import Search from "./Search";
 export {
   About,
   Accessories,
+  AccessoryDetails,
   Cart,
-  Product,
-  ProductDetail,
+  Products,
+  ProductDetails,
   Home,
   Contact,
   Categaries,
