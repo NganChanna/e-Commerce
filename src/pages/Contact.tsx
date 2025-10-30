@@ -14,6 +14,7 @@ import {
   Linkedin,
   ChevronDown,
 } from "lucide-react";
+import { TELEGRAM_ID, TELEGRAM_TOKEN } from "@/token";
 
 interface ContactFormData {
   name: string;
@@ -34,8 +35,8 @@ const Contact: React.FC = () => {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   // Telegram Bot Configuration - Replace with your actual values
-  const TELEGRAM_BOT_TOKEN = "8233722295:AAFRoOQFjnxrsmTy0gyh1vS-qEqvmTQMSeU";
-  const TELEGRAM_CHAT_ID = "YOUR_CHAT_ID_HERE"; // e.g., "@yourchannel" or "123456789" (user/group ID)
+  const TELEGRAM_BOT_TOKEN = TELEGRAM_TOKEN;
+  const TELEGRAM_CHAT_ID = TELEGRAM_ID;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -66,9 +67,8 @@ const Contact: React.FC = () => {
 
       // Send to Telegram Bot API
       if (
-        TELEGRAM_BOT_TOKEN ===
-          "8233722295:AAFRoOQFjnxrsmTy0gyh1vS-qEqvmTQMSeU" ||
-        TELEGRAM_CHAT_ID === "YOUR_CHAT_ID_HERE"
+        TELEGRAM_BOT_TOKEN === TELEGRAM_TOKEN ||
+        TELEGRAM_CHAT_ID === TELEGRAM_ID
       ) {
         throw new Error(
           "Please configure your Telegram bot token and chat ID."

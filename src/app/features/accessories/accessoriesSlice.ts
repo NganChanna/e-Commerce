@@ -6,7 +6,6 @@ import {
 import type { Accessory } from "@/types/Accessory";
 import { initialAccessoryState } from "@/types/Accessory";
 
-// Example async thunk to fetch data.json
 export const fetchAccessories = createAsyncThunk<Accessory[]>(
   "accessories/fetchAccessories",
   async () => {
@@ -18,7 +17,7 @@ export const fetchAccessories = createAsyncThunk<Accessory[]>(
 
 const accessoriesSlice = createSlice({
   name: "accessories",
-  initialState: initialAccessoryState, // ✅ imported from types folder
+  initialState: initialAccessoryState,
   reducers: {},
   extraReducers: (builder) => {
     builder
