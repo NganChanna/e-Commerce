@@ -11,6 +11,15 @@
         "button-name": "off",
         "link-name": "off"
       }
-    ]
+    ],
+    "compat-api/html": [
+      "default",
+      {
+        "ignore": [
+          "iframe[loading]"
+        ]
+      }
+    ],
+    "no-inline-styles": "off"
   }
 }

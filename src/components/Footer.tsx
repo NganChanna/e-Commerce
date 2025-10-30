@@ -3,7 +3,7 @@ import { Facebook, Instagram, Twitter, Github, Mail } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-800 mt-16">
+    <footer className="w-full bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 border-t border-gray-200 dark:border-gray-800 mt-4">
       <div className="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-4 sm:grid-cols-2 gap-10">
         {/* Brand Info */}
         <div>
