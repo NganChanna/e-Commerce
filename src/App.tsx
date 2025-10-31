@@ -9,7 +9,7 @@ import {
   AccessoryDetails,
   Products,
   ProductDetails,
-  Categaries,
+  Categories,
   Cart,
 } from "./pages/index.ts";
 
@@ -24,7 +24,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/:id" element={<ProductDetails />} />
-          <Route path="/categaries" element={<Categaries />} />
+          <Route path="/categories" element={<Categories />} />
           <Route path="/accessories" element={<Accessories />} />
           <Route path="/accessories/:id" element={<AccessoryDetails />} />
           <Route path="/about" element={<About />} />

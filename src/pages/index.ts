@@ -6,7 +6,7 @@ import Home from "./Home";
 import Products from "./Product";
 import ProductDetails from "./ProductDetails";
 import Contact from "./Contact";
-import Categaries from "./Categaries";
+import Categories from "./Categories";
 
 export {
   About,
@@ -17,5 +17,5 @@ export {
   ProductDetails,
   Home,
   Contact,
-  Categaries,
+  Categories,
 };
