@@ -1,17 +1,15 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import type { RootState } from "@/app/store";
+// import { useSelector, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/app/hooks";
+// import type { RootState } from "@/app/store";
 import { fetchProduct } from "../app/features/products/productSlice";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Categories = () => {
-  const dispatch = useDispatch();
-  const { data: products, loading } = useSelector(
-    (state: RootState) => state.products
-  );
+  const dispatch = useAppDispatch();
+  const { data: products, loading } = useAppSelector((state) => state.products);
 
-  // Fetch product data if not loaded
   useEffect(() => {
     if (products.length === 0) {
       dispatch(fetchProduct());
