@@ -85,7 +85,7 @@ const Contact: React.FC = () => {
           body: JSON.stringify({
             chat_id: TELEGRAM_CHAT_ID,
             text: messageText,
-            parse_mode: "Markdown", // For bold/italic formatting
+            parse_mode: "Markdown",
           }),
         }
       );

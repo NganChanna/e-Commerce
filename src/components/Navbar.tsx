@@ -2,20 +2,23 @@
 
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Input } from "./ui/input";
-import { Menu, X } from "lucide-react";
+import { useSelector } from "react-redux";
+import { Menu, X, ShoppingBag } from "lucide-react";
 import { ModeToggle } from "./index";
+import type { RootState } from "@/app/store";
+import SearchEngine from "./SearchEngine";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const { totalQuantity } = useSelector((state: RootState) => state.cart);
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-8 py-3">
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center gap-2 text-xl font-bold tracking-tight hover:text-primary transition-colors"
+          className="flex items-center gap-2 text-xl font-bold tracking-tight hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
         >
           <img
             src="/image.png"
@@ -27,47 +30,81 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link to="/" className="hover:text-primary transition">
+          <Link
+            to="/"
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
+          >
             Home
           </Link>
-          <Link to="/product" className="hover:text-primary transition">
+          <Link
+            to="/products"
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
+          >
             Products
           </Link>
-          <Link to="/categaries" className="hover:text-primary transition">
-            Categaries
+          <Link
+            to="/categories"
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
+          >
+            Categories
           </Link>
-          <Link to="/accessories" className="hover:text-primary transition">
+          <Link
+            to="/accessories"
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
+          >
             Accessories
           </Link>
           <Link
             to="/about"
-            className="hover:text-primary transition flex items-center gap-2"
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
-            {/* <CircleIcon className="h-4 w-4" /> */}
             About
           </Link>
           <Link
             to="/contact"
-            className="hover:text-primary transition flex items-center gap-2"
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
-            {/* <CircleIcon className="h-4 w-4" /> */}
             Contact
           </Link>
-          <Input
-            type="text"
-            placeholder="Search itme ..."
-            className="border-none focus:ring-0 focus:outline-none bg-transparent text-sm"
-          />
+
+          {/* Search Bar */}
+          <div className="relative">
+            <SearchEngine />
+          </div>
+
+          {/* Cart Icon */}
+          <Link
+            to="/cart"
+            className="relative flex items-center justify-center hover:text-blue-600 dark:hover:text-blue-400 transition"
+          >
+            <ShoppingBag className="w-6 h-6" />
+            {totalQuantity > 0 && (
+              <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                {totalQuantity}
+              </span>
+            )}
+          </Link>
 
           <ModeToggle />
         </nav>
 
         {/* Mobile menu button */}
-        <div className="md:hidden flex items-center gap-2">
+        <div className="md:hidden flex items-center gap-3">
+          <Link
+            to="/cart"
+            className="relative flex items-center justify-center hover:text-blue-600 dark:hover:text-blue-400 transition"
+          >
+            <ShoppingBag className="w-6 h-6" />
+            {totalQuantity > 0 && (
+              <span className="absolute -top-2 -right-2 bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                {totalQuantity}
+              </span>
+            )}
+          </Link>
           <ModeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-md hover:bg-accent transition "
+            className="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition"
             aria-label="Toggle Menu"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -81,40 +118,46 @@ const Navbar = () => {
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <nav className="flex flex-col p-4 space-y-3 bg-background border-t border-border">
+        <nav className="flex flex-col p-4 space-y-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
           <Link
             to="/"
-            className="hover:text-primary transition"
             onClick={() => setIsOpen(false)}
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
             Home
           </Link>
           <Link
-            to="/docs"
-            className="hover:text-primary transition"
+            to="/products"
             onClick={() => setIsOpen(false)}
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
             Products
           </Link>
           <Link
-            to="#"
-            className="hover:text-primary transition"
+            to="/categories"
             onClick={() => setIsOpen(false)}
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
-            Categaries
+            Categories
           </Link>
           <Link
-            to="#"
-            className="flex items-center gap-2 hover:text-primary transition"
+            to="/accessories"
             onClick={() => setIsOpen(false)}
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
             Accessories
           </Link>
-
           <Link
-            to="#"
-            className="flex items-center gap-2 hover:text-primary transition"
+            to="/about"
             onClick={() => setIsOpen(false)}
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
+          >
+            About
+          </Link>
+          <Link
+            to="/contact"
+            onClick={() => setIsOpen(false)}
+            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
             Contact
           </Link>

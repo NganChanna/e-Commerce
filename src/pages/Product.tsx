@@ -87,7 +87,7 @@ const Products: React.FC = () => {
                 </p>
 
                 <button
-                  onClick={() => navigate(`/product/${product.id}`)}
+                  onClick={() => navigate(`/products/${product.id}`)}
                   className="text-blue-600 dark:text-blue-400 text-sm font-medium hover:underline"
                 >
                   View Details

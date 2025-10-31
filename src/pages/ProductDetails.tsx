@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { Star, ShoppingCart } from "lucide-react";
 import type { RootState } from "@/app/store";
+import { addToCart } from "@/app/features/cart/cartSlice";
 
 interface Review {
   name: string;
@@ -16,6 +17,7 @@ interface Review {
 const ProductDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const product = useSelector((state: RootState) =>
     state.products.data.find((item) => item.id === Number(id))
@@ -59,6 +61,20 @@ const ProductDetails: React.FC = () => {
       </div>
     );
   }
+
+  const haddleAddToCart = () => {
+    dispatch(
+      addToCart({
+        id: product.id,
+        name: product.name,
+        brand: product.brand,
+        price: product.price,
+        image: product.image,
+        type: "product", // or "accessory"
+        quantity: 1,
+      })
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 py-10 px-6 flex flex-col items-center">
@@ -175,6 +191,7 @@ const ProductDetails: React.FC = () => {
 
             <div className="flex gap-4">
               <motion.button
+                onClick={haddleAddToCart}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="flex-1 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 text-white py-3 rounded-xl font-semibold transition-colors duration-300"

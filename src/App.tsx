@@ -10,6 +10,7 @@ import {
   Products,
   ProductDetails,
   Categaries,
+  Cart,
 } from "./pages/index.ts";
 
 const App = () => {
@@ -18,16 +19,17 @@ const App = () => {
       <header>
         <Navbar />
       </header>
-      <main>
+      <main className="mt-12">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/product" element={<Products />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/:id" element={<ProductDetails />} />
           <Route path="/categaries" element={<Categaries />} />
           <Route path="/accessories" element={<Accessories />} />
           <Route path="/accessories/:id" element={<AccessoryDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </main>
       <footer>

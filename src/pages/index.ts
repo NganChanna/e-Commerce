@@ -7,7 +7,6 @@ import Products from "./Product";
 import ProductDetails from "./ProductDetails";
 import Contact from "./Contact";
 import Categaries from "./Categaries";
-import Search from "./Search";
 
 export {
   About,
@@ -19,5 +18,4 @@ export {
   Home,
   Contact,
   Categaries,
-  Search,
 };
