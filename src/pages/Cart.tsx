@@ -82,7 +82,7 @@ const Cart: React.FC = () => {
                 </div>
 
                 {/* Quantity Controls */}
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col gap-1 md:flex-row items-center md:gap-3">
                   <button
                     onClick={() =>
                       handleQuantityChange(
@@ -92,11 +92,11 @@ const Cart: React.FC = () => {
                       )
                     }
                     disabled={item.quantity <= 1}
-                    className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+                    className="p-2 cursor-pointer rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
                   >
-                    <Minus size={16} />
+                    <Minus className="w-[10px] h-[10px] md:w-[16x] md:h-[16px]"></Minus>
                   </button>
-                  <span className="text-lg font-medium w-6 text-center">
+                  <span className="text-sm md:text-lg font-medium w-6 text-center">
                     {item.quantity}
                   </span>
                   <button
@@ -107,25 +107,24 @@ const Cart: React.FC = () => {
                         item.quantity + 1
                       )
                     }
-                    className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+                    className="p-2 rounded-lg cursor-pointer bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
                   >
-                    <Plus size={16} />
+                    <Plus className="w-[10px] h-[10px] md:w-[16x] md:h-[16px]"></Plus>
+                  </button>
+                  {/* Remove */}
+                  <button
+                    onClick={() => handleRemove(item.id, item.type)}
+                    className="mt-2 md:mt-0 md:ml-4 cursor-pointer text-red-500 hover:text-red-600"
+                  >
+                    <Trash2 size={20} />
                   </button>
                 </div>
-
-                {/* Remove */}
-                <button
-                  onClick={() => handleRemove(item.id, item.type)}
-                  className="ml-4 text-red-500 hover:text-red-600"
-                >
-                  <Trash2 size={20} />
-                </button>
               </motion.div>
             ))}
 
             <button
               onClick={() => dispatch(clearCart())}
-              className="mt-6 text-sm text-red-500 hover:text-red-600 font-semibold"
+              className="text-sm text-red-500 hover:text-red-600 font-semibold cursor-pointer"
             >
               Clear Cart
             </button>
