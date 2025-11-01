@@ -89,12 +89,12 @@ const ProductDetails: React.FC = () => {
           initial={{ scale: 0.95 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="md:w-1/2 bg-gray-100 dark:bg-gray-700 flex items-center justify-center p-6"
+          className="md:w-1/2 bg-gray-100 dark:bg-gray-700 flex items-center justify-center p-6 "
         >
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-96 object-contain rounded-2xl hover:scale-105 transition-transform duration-300"
+            className="w-full h-96 object-contain rounded-2xl hover:scale-105 transition-transform duration-300 "
           />
         </motion.div>
 
