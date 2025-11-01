@@ -1,5 +1,6 @@
 import React from "react";
 import { Facebook, Instagram, Twitter, Github, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Footer: React.FC = () => {
   return (
@@ -31,28 +32,28 @@ const Footer: React.FC = () => {
               </a>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/products"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
-                Accessories
-              </a>
+                Product
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/about"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                to="/contact"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -129,7 +130,7 @@ const Footer: React.FC = () => {
           </div>
           <p className="flex items-center gap-2 text-sm">
             <Mail size={16} className="text-blue-500 dark:text-blue-400" />
-            support@accessoryzone.com
+            support@meganicphone.com
           </p>
         </div>
       </div>
