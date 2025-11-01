@@ -34,11 +34,11 @@ const ProductBanner = () => {
           className="relative flex justify-center"
         >
           <div className="absolute blur-3xl bg-blue-400/30 dark:bg-cyan-600/30 rounded-full w-[400px] h-[400px] md:w-[520px] md:h-[520px] -z-10" />
-          <img
+          {/* <img
             src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800"
             alt="Smartphone Display"
-            className="w-[300px] md:w-[480px] rounded-[2.5rem] shadow-2xl hover:scale-105 transition-transform duration-700"
-          />
+            className="min-h-[500px] w-[300px] md:w-[480px] rounded-[2.5rem] shadow-2xl hover:scale-105 transition-transform duration-700"
+          /> */}
         </motion.div>
       </div>
     </section>
