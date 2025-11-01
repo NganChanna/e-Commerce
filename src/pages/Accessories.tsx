@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { motion } from "framer-motion";
 import { ShoppingCart, MoreVertical, Star } from "lucide-react";
-import type { RootState, AppDispatch } from "../app/store";
+import type { RootState, AppDispatch } from "@/app/store";
 import { fetchAccessories } from "../app/features/accessories/accessoriesSlice";
 import { useNavigate } from "react-router-dom";
+import { AccessoryBanner } from "@/components";
 
 const Accessories: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -28,11 +29,9 @@ const Accessories: React.FC = () => {
   );
 
   return (
-    <div className="max-w-7xlmin-h-screen  dark:bg-gray-900 text-gray-800 dark:text-gray-100 px-6 py-10 flex flex-col items-center">
+    <div className="max-w-7xl min-h-screen dark:bg-gray-900 text-gray-800 dark:text-gray-100 px-6 py-10 flex flex-col items-center">
       {/* Title */}
-      <h1 className="text-4xl font-bold text-gray-400 mb-10 tracking-wide dark:text-shadow-white">
-        🛒 Accessories Collection
-      </h1>
+      <AccessoryBanner />
 
       {loading && (
         <p className="text-blue-400 font-medium text-lg">Loading...</p>
@@ -40,7 +39,7 @@ const Accessories: React.FC = () => {
       {error && <p className="text-red-400 font-medium text-lg">{error}</p>}
 
       {/* Card Grid */}
-      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-6xl">
+      <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-6xl mt-24">
         {paginatedData.map((item) => (
           <motion.div
             key={item.id}

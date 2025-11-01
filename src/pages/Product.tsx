@@ -5,6 +5,7 @@ import { Star, ShoppingCart, MoreVertical } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import type { RootState, AppDispatch } from "@/app/store";
 import { fetchProduct } from "@/app/features/products/productSlice";
+import { ProductBanner } from "@/components";
 
 const Products: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -37,9 +38,12 @@ const Products: React.FC = () => {
 
   return (
     <div className="max-w-7xl min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 px-6 py-10">
+      <div className="mb-16">
+        <ProductBanner />
+      </div>
       {/* Header */}
-      <h1 className="text-4xl font-bold text-center text-blue-600 dark:text-blue-400 mb-10">
-        📱 Smartphone Collection
+      <h1 className="text-4xl font-bold text-left text-blue-600 dark:text-blue-400 mb-10">
+        Smartphone Collection
       </h1>
 
       {/* Loading & Error */}

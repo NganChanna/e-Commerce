@@ -4,6 +4,7 @@ import { fetchProduct } from "../app/features/products/productSlice";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Filter, Search } from "lucide-react";
+import { CategoryBanner } from "@/components";
 
 const Categories = () => {
   const dispatch = useAppDispatch();
@@ -51,6 +52,9 @@ const Categories = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900 text-gray-800 dark:text-gray-100 py-20 px-6">
       <div className="max-w-7xl mx-auto">
+        <div className="mb-16">
+          <CategoryBanner />
+        </div>
         {/* 🏷️ Header */}
         <div className="text-center mb-10">
           <h1 className="text-5xl font-extrabold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-3">
