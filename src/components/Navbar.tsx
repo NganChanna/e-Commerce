@@ -40,19 +40,19 @@ const Navbar = () => {
             to="/products"
             className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
-            Products
+            Product
           </Link>
           <Link
             to="/categories"
             className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
-            Categories
+            Category
           </Link>
           <Link
             to="/accessories"
             className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
-            Accessories
+            Accessory
           </Link>
           <Link
             to="/about"
@@ -172,14 +172,14 @@ const Navbar = () => {
             onClick={() => setIsOpen(false)}
             className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
-            Categories
+            Category
           </Link>
           <Link
             to="/accessories"
             onClick={() => setIsOpen(false)}
             className="hover:text-blue-600 dark:hover:text-blue-400 transition"
           >
-            Accessories
+            Accessory
           </Link>
           <Link
             to="/about"
