@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ProductBanner = () => {
   return (
-    <section className="relative w-full min-h-screen rounded-2xl flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-100 via-white to-blue-50 dark:from-blue-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500">
+    <section className="relative w-full min-h-[500px] rounded-2xl flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-100 via-white to-blue-50 dark:from-blue-950 dark:via-gray-900 dark:to-gray-950 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 flex flex-col-reverse md:flex-row items-center justify-between gap-10">
         {/* Left Content */}
         <motion.div

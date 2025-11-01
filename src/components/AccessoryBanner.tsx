@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const AccessoryBanner = () => {
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-100 via-white to-green-100 dark:from-emerald-950 dark:via-gray-900 dark:to-green-950 transition-colors duration-500">
+    <section className="relative w-full min-h-[500px] flex items-center justify-center rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-100 via-white to-green-100 dark:from-emerald-950 dark:via-gray-900 dark:to-green-950 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Text */}
         <motion.div

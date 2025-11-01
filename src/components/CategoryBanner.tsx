@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const CategoryBanner = () => {
   return (
-    <section className="relative w-full min-h-screen flex items-center rounded-2xl justify-center overflow-hidden bg-gradient-to-br from-indigo-100 via-white to-purple-100 dark:from-indigo-950 dark:via-gray-900 dark:to-purple-950 transition-colors duration-500">
+    <section className="relative w-full min-h-[500px] flex items-center rounded-2xl justify-center overflow-hidden bg-gradient-to-br from-indigo-100 via-white to-purple-100 dark:from-indigo-950 dark:via-gray-900 dark:to-purple-950 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Text */}
         <motion.div
