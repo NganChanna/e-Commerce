@@ -36,7 +36,7 @@ const Products: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 px-6 py-10">
+    <div className="max-w-7xl min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 px-6 py-10">
       {/* Header */}
       <h1 className="text-4xl font-bold text-center text-blue-600 dark:text-blue-400 mb-10">
         📱 Smartphone Collection

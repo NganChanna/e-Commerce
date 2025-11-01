@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-// import { useSelector, useDispatch } from "react-redux";
+
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
-// import type { RootState } from "@/app/store";
+
 import { fetchProduct } from "../app/features/products/productSlice";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";

@@ -28,7 +28,7 @@ const Accessories: React.FC = () => {
   );
 
   return (
-    <div className="min-h-screen  dark:bg-gray-900 text-gray-800 dark:text-gray-100 px-6 py-10 flex flex-col items-center">
+    <div className="max-w-7xlmin-h-screen  dark:bg-gray-900 text-gray-800 dark:text-gray-100 px-6 py-10 flex flex-col items-center">
       {/* Title */}
       <h1 className="text-4xl font-bold text-gray-400 mb-10 tracking-wide dark:text-shadow-white">
         🛒 Accessories Collection

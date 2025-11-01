@@ -1,17 +1,21 @@
 import { Banner } from "@/components";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "@/app/hooks";
 import type { RootState } from "@/app/store";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ShoppingCart, Eye } from "lucide-react";
 import { addToCart } from "@/app/features/cart/cartSlice";
 import type { Product } from "@/types/Product";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
+import { fetchProduct } from "@/app/features/products/productSlice";
+import { fetchAccessories } from "@/app/features/accessories/accessoriesSlice";
 
 const Home = () => {
-  const dispatch = useDispatch();
-  const { data: products } = useSelector((state: RootState) => state.products);
-  const { data: accessories } = useSelector(
+  const dispatch = useAppDispatch();
+  const { data: products } = useAppSelector(
+    (state: RootState) => state.products
+  );
+  const { data: accessories } = useAppSelector(
     (state: RootState) => state.accessories
   );
   const bestSellers = useMemo(() => (products || []).slice(0, 4), [products]);
@@ -39,6 +43,11 @@ const Home = () => {
       img: "https://www.svgrepo.com/show/367263/oppo.svg",
     },
   ];
+
+  useEffect(() => {
+    dispatch(fetchProduct());
+    dispatch(fetchAccessories());
+  }, [dispatch]);
 
   // helper function for cart
   const handleAddToCart = (item: Product, type: "product" | "accessory") => {
