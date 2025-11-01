@@ -24,12 +24,12 @@ const Footer: React.FC = () => {
           </h3>
           <ul className="space-y-2">
             <li>
-              <a
-                href="#"
+              <Link
+                to="/"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition"
               >
                 Home
-              </a>
+              </Link>
             </li>
             <li>
               <Link
