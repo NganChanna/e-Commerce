@@ -1,5 +1,5 @@
 import { Banner } from "@/components";
-import { useAppSelector, useAppDispatch } from "@/app/hooks";
+import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
 import type { RootState } from "@/app/store";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";

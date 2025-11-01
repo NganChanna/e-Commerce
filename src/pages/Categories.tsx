@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "@/app/hooks";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 
 import { fetchProduct } from "../app/features/products/productSlice";
 import { motion } from "framer-motion";
