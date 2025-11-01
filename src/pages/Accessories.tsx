@@ -108,7 +108,7 @@ const Accessories: React.FC = () => {
         >
           ◀ Previous
         </button>
-        <span className="text-white font-semibold">
+        <span className="text-gray-500 dark:text-white font-semibold">
           {currentPage} / {totalPages}
         </span>
         <button
