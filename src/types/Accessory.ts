@@ -1,9 +1,6 @@
 // src/types/accessory.ts
-
-export interface Accessory {
-  id: number;
-  name: string;
-  brand: string;
+import type { Product } from "@/types/Product";
+export interface Accessory extends Product {
   type: string;
   color: string;
   price: number;

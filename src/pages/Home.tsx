@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Banner } from "@/components";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "@/app/store";
@@ -6,6 +5,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ShoppingCart, Eye } from "lucide-react";
 import { addToCart } from "@/app/features/cart/cartSlice";
+import type { Product } from "@/types/Product";
+import { useMemo } from "react";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -13,10 +14,12 @@ const Home = () => {
   const { data: accessories } = useSelector(
     (state: RootState) => state.accessories
   );
-
-  const bestSellers = products.slice(0, 4);
-  const trending = products.slice(4, 8);
-  const topAccessories = accessories.slice(0, 4);
+  const bestSellers = useMemo(() => (products || []).slice(0, 4), [products]);
+  const trending = useMemo(() => (products || []).slice(4, 8), [products]);
+  const topAccessories = useMemo(
+    () => (accessories || []).slice(0, 4),
+    [accessories]
+  );
 
   const categories = [
     {
@@ -25,20 +28,20 @@ const Home = () => {
     },
     {
       name: "Samsung",
-      img: "https://upload.wikimedia.org/wikipedia/commons/2/24/Samsung_Logo.svg",
+      img: "https://www.svgrepo.com/show/303265/samsung-logo.svg",
     },
     {
       name: "Vivo",
-      img: "https://upload.wikimedia.org/wikipedia/commons/2/28/Vivo_logo.svg",
+      img: "https://www.svgrepo.com/show/367262/vivo.svg",
     },
     {
       name: "Oppo",
-      img: "https://upload.wikimedia.org/wikipedia/commons/2/27/OPPO_Logo_2019.svg",
+      img: "https://www.svgrepo.com/show/367263/oppo.svg",
     },
   ];
 
   // helper function for cart
-  const handleAddToCart = (item: any, type: "product" | "accessory") => {
+  const handleAddToCart = (item: Product, type: "product" | "accessory") => {
     dispatch(
       addToCart({
         id: item.id,
@@ -150,9 +153,9 @@ const Section = ({
 }: {
   title: string;
   color: string;
-  items: any[];
+  items: Product[]; // Or Accessory[] if separate
   type: "product" | "accessory";
-  onAdd: (item: any, type: "product" | "accessory") => void;
+  onAdd: (item: Product, type: "product" | "accessory") => void;
   link: string;
 }) => (
   <section className="max-w-7xl mx-auto py-20 px-6">
@@ -184,6 +187,7 @@ const Section = ({
               src={item.image}
               alt={item.name}
               className="w-full h-60 object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center gap-4 transition">
               <Link
