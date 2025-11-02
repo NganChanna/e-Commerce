@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Benner = () => {
   return (
-    <section className="relative flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-20 py-20 bg-gradient-to-r from-blue-50 via-white to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
+    <section className="relative z-1 flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-20 py-20 bg-gradient-to-r from-blue-50 via-white to-blue-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden">
       {/* Decorative gradient circle */}
       <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-blue-300/20 dark:bg-blue-700/20 rounded-full blur-3xl"></div>
 
