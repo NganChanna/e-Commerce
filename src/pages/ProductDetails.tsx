@@ -94,7 +94,7 @@ const ProductDetails: React.FC = () => {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-96 object-contain rounded-2xl hover:scale-105 transition-transform duration-300 "
+            className="w-full h-96  rounded-2xl hover:scale-105 transition-transform duration-300 "
           />
         </motion.div>
 
