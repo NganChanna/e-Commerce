@@ -43,7 +43,7 @@ const AccessoryDetails: React.FC = () => {
           <img
             src={accessory.image}
             alt={accessory.name}
-            className="w-full h-96  rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
+            className="w-full h-96 rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300"
           />
         </motion.div>
 
