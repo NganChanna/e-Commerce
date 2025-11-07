@@ -14,7 +14,7 @@ import {
   Linkedin,
   ChevronDown,
 } from "lucide-react";
-import { TELEGRAM_ID, TELEGRAM_TOKEN } from "@/token";
+import { TELEGRAM_ID, TELEGRAM_TOKEN } from "@/token/token";
 
 interface ContactFormData {
   name: string;

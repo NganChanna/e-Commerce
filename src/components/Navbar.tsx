@@ -7,8 +7,18 @@ import { Menu, X, ShoppingBag } from "lucide-react";
 import { ModeToggle } from "./index";
 import type { RootState } from "@/app/store";
 import SearchEngine from "./SearchEngine";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import { fetchProduct } from "@/app/features/products/productSlice";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
+  const dispatch = useAppDispatch();
+  const { data: products } = useAppSelector((state) => state.products);
+
+  React.useEffect(() => {
+    if (products.length === 0) dispatch(fetchProduct());
+  }, [dispatch, products]);
+
   const [isOpen, setIsOpen] = React.useState(false);
   const { totalQuantity } = useSelector((state: RootState) => state.cart);
 
@@ -36,12 +46,35 @@ const Navbar = () => {
           >
             Home
           </Link>
-          <Link
-            to="/products"
-            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
-          >
-            Product
-          </Link>
+          {/* 🛍️ Product Dropdown (Hover Menu) */}
+          <div className="relative group">
+            <Link
+              to="/products"
+              className="hover:text-blue-600 dark:hover:text-blue-400 transition"
+            >
+              Product
+            </Link>
+
+            {/* Dropdown */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute hidden group-hover:block bg-white dark:bg-gray-900 shadow-lg border border-gray-200 dark:border-gray-700 rounded-xl mt-3 py-3 w-48 z-50"
+            >
+              {Array.from(new Set(products.map((p) => p.brand))).map(
+                (brand) => (
+                  <Link
+                    key={brand}
+                    to={`/products?brand=${encodeURIComponent(brand)}`}
+                    className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-gray-800 hover:text-blue-600 dark:hover:text-blue-400 transition"
+                  >
+                    {brand}
+                  </Link>
+                )
+              )}
+            </motion.div>
+          </div>
           <Link
             to="/categories"
             className="hover:text-blue-600 dark:hover:text-blue-400 transition"
