@@ -28,7 +28,7 @@ const Navbar = () => {
   const { totalQuantity } = useSelector((state: RootState) => state.cart);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-white/80 dark:bg-black border-b border-gray-200 dark:border-gray-700 shadow-sm transition-colors">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-8 py-3">
         {/* 🏷️ Logo */}
         <Link
@@ -51,10 +51,13 @@ const Navbar = () => {
           >
             Home
           </Link>
-          <NavigationMenu>
+          <NavigationMenu className=" dark:bg-gray-900/80">
             <NavigationMenuItem>
               <NavigationMenuTrigger>
-                <Link to="/products" className="">
+                <Link
+                  to="/products"
+                  className="hover:text-blue-600 dark:hover:text-blue-400 transition"
+                >
                   Product
                 </Link>
               </NavigationMenuTrigger>
