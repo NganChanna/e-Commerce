@@ -53,9 +53,13 @@ const Navbar = () => {
           </Link>
           <NavigationMenu>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+              <NavigationMenuTrigger>
+                <Link to="/products" className="">
+                  Product
+                </Link>
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid gap-2 sm:w-[400px] md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   {Array.from(new Set(products.map((p) => p.brand))).map(
                     (brand) => (
                       <Link
@@ -73,36 +77,7 @@ const Navbar = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
           </NavigationMenu>
-          {/* 🛍️ Product Dropdown Menu */}
-          {/* <div className="relative group">
-            <Link
-              to="/products"
-              className="hover:text-blue-600 dark:hover:text-blue-400 transition"
-            >
-              Product
-            </Link> */}
 
-          {/* Dropdown */}
-          {/* <div
-              className="absolute left-0 top-full hidden group-hover:flex flex-col mt-3 
-               bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 
-               rounded-xl shadow-lg py-3 w-56 z-[999] transition-all duration-300"
-            >
-              {Array.from(new Set(products.map((p) => p.brand))).map(
-                (brand) => (
-                  <Link
-                    key={brand}
-                    to={`/products?brand=${encodeURIComponent(brand)}`}
-                    className="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 
-                   hover:bg-blue-50 dark:hover:bg-gray-800 
-                   hover:text-blue-600 dark:hover:text-blue-400 transition"
-                  >
-                    {brand}
-                  </Link>
-                )
-              )}
-            </div>
-          </div> */}
           <Link
             to="/categories"
             className="hover:text-blue-600 dark:hover:text-blue-400 transition"
