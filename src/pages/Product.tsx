@@ -60,7 +60,7 @@ const Products: React.FC = () => {
       </div>
 
       {/* Header */}
-      <div className="flex items-center justify-between flex-wrap gap-3 mb-10">
+      <div className="max-w-7xl flex items-center justify-between flex-wrap gap-3 mb-10">
         <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400">
           {selectedBrand ? `${selectedBrand} Phones` : "Smartphone Collection"}
         </h1>
