@@ -11,14 +11,17 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { fetchProduct } from "@/app/features/products/productSlice";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
+  NavigationMenuList,
   NavigationMenuTrigger,
+  NavigationMenuContent,
+  NavigationMenuLink,
 } from "@/components/ui/navigation-menu";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
   const { data: products } = useAppSelector((state) => state.products);
+  const brands = Array.from(new Set(products.map((p) => p.brand)));
 
   React.useEffect(() => {
     if (products.length === 0) dispatch(fetchProduct());
@@ -51,34 +54,35 @@ const Navbar = () => {
           >
             Home
           </Link>
-          <NavigationMenu className=" dark:bg-gray-900/80">
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>
-                <Link
-                  to="/products"
-                  className="hover:text-blue-600 dark:hover:text-blue-400 transition"
-                >
-                  Product
-                </Link>
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                  {Array.from(new Set(products.map((p) => p.brand))).map(
-                    (brand) => (
-                      <Link
-                        key={brand}
-                        to={`/products?brand=${encodeURIComponent(brand)}`}
-                        className="px-4 py-2 text-sm text-gray-700 dark:text-gray-300 
-                   hover:bg-blue-50 dark:hover:bg-gray-800 
-                   hover:text-blue-600 dark:hover:text-blue-400 transition"
-                      >
-                        {brand}
-                      </Link>
-                    )
-                  )}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+          <NavigationMenu className="dark:bg-gray-900/80">
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                {/* 🔘 Trigger (text only) */}
+                <NavigationMenuTrigger className="hover:text-blue-600 dark:hover:text-blue-400 transition">
+                  <Link to="/products">Product</Link>
+                </NavigationMenuTrigger>
+
+                {/* 🧩 Dropdown Content */}
+                <NavigationMenuContent className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-xl p-4">
+                  <ul className="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                    {brands.map((brand) => (
+                      <li key={brand}>
+                        <NavigationMenuLink asChild>
+                          <Link
+                            to={`/products?brand=${encodeURIComponent(brand)}`}
+                            className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 
+                      hover:bg-blue-50 dark:hover:bg-gray-800 
+                      hover:text-blue-600 dark:hover:text-blue-400 rounded-md transition"
+                          >
+                            {brand}
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
           </NavigationMenu>
 
           <Link
@@ -188,10 +192,10 @@ const Navbar = () => {
       {/* 📱💻 Mobile + Tablet Dropdown (≤ 12 inch / < 1280px) */}
       <div
         className={`xl:hidden transition-all duration-300 overflow-hidden ${
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <nav className="flex flex-col p-4 space-y-4 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+        <nav className="flex flex-col p-4 space-y-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200">
           <Link
             to="/"
             onClick={() => setIsOpen(false)}
@@ -199,13 +203,47 @@ const Navbar = () => {
           >
             Home
           </Link>
-          <Link
-            to="/products"
-            onClick={() => setIsOpen(false)}
-            className="hover:text-blue-600 dark:hover:text-blue-400 transition"
-          >
-            Products
-          </Link>
+
+          {/* 🔽 Product Dropdown */}
+          <details className="group">
+            <summary className="flex items-center justify-between cursor-pointer py-2 text-gray-800 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400">
+              <span>Product</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4 transition-transform group-open:rotate-180"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </summary>
+            <ul className="pl-4 mt-1 space-y-2 border-l border-gray-300 dark:border-gray-700">
+              <Link
+                to="/products"
+                className="block px-2 py-1 text-sm hover:text-blue-600 dark:hover:text-blue-400 transition"
+              >
+                All Products
+              </Link>
+              {brands.map((brand) => (
+                <li key={brand}>
+                  <Link
+                    to={`/products?brand=${encodeURIComponent(brand)}`}
+                    onClick={() => setIsOpen(false)}
+                    className="block px-2 py-1 text-sm hover:text-blue-600 dark:hover:text-blue-400 transition"
+                  >
+                    {brand}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </details>
+
           <Link
             to="/categories"
             onClick={() => setIsOpen(false)}

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { Star, ShoppingCart, MoreVertical } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import type { RootState, AppDispatch } from "@/app/store";
 import { fetchProduct } from "@/app/features/products/productSlice";
 import { ProductBanner } from "@/components";
@@ -10,24 +10,41 @@ import { ProductBanner } from "@/components";
 const Products: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const location = useLocation();
   const { data, loading, error } = useSelector(
     (state: RootState) => state.products
   );
+
+  // ✅ Get brand from URL
+  const queryParams = new URLSearchParams(location.search);
+  const selectedBrand = queryParams.get("brand");
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
 
-  // Derived pagination data
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-  const paginatedProducts = data.slice(
+  useEffect(() => {
+    if (data.length === 0) {
+      dispatch(fetchProduct());
+    }
+  }, [dispatch, data]);
+
+  // ✅ Filter by brand if brand param exists
+  const filteredData = useMemo(() => {
+    if (selectedBrand) {
+      return data.filter(
+        (product) => product.brand.toLowerCase() === selectedBrand.toLowerCase()
+      );
+    }
+    return data;
+  }, [data, selectedBrand]);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const paginatedProducts = filteredData.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
-
-  useEffect(() => {
-    dispatch(fetchProduct());
-  }, [dispatch]);
 
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -41,10 +58,22 @@ const Products: React.FC = () => {
       <div className="mb-16">
         <ProductBanner />
       </div>
+
       {/* Header */}
-      <h1 className="text-4xl font-bold text-left text-blue-600 dark:text-blue-400 mb-10">
-        Smartphone Collection
-      </h1>
+      <div className="flex items-center justify-between flex-wrap gap-3 mb-10">
+        <h1 className="text-4xl font-bold text-blue-600 dark:text-blue-400">
+          {selectedBrand ? `${selectedBrand} Phones` : "Smartphone Collection"}
+        </h1>
+
+        {selectedBrand && (
+          <button
+            onClick={() => navigate("/products")}
+            className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition"
+          >
+            ← Show All Products
+          </button>
+        )}
+      </div>
 
       {/* Loading & Error */}
       {loading && (
@@ -117,7 +146,7 @@ const Products: React.FC = () => {
       </div>
 
       {/* Pagination */}
-      {data.length > itemsPerPage && (
+      {filteredData.length > itemsPerPage && (
         <div className="flex justify-center items-center gap-2 mt-10 flex-wrap">
           {/* Previous */}
           <button
