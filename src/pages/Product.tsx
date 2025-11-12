@@ -1,21 +1,23 @@
 import React, { useEffect, useState, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { Star, ShoppingCart, MoreVertical } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
-import type { RootState, AppDispatch } from "@/app/store";
+import type { RootState } from "@/app/store";
 import { fetchProduct } from "@/app/features/products/productSlice";
 import { ProductBanner } from "@/components";
+import { addToCart } from "@/app/features/cart/cartSlice";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import type { Product } from "@/types/Product";
 
 const Products: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-  const { data, loading, error } = useSelector(
+  const { data, loading, error } = useAppSelector(
     (state: RootState) => state.products
   );
 
-  // ✅ Get brand from URL
+  //  Get brand from URL
   const queryParams = new URLSearchParams(location.search);
   const selectedBrand = queryParams.get("brand");
 
@@ -29,7 +31,7 @@ const Products: React.FC = () => {
     }
   }, [dispatch, data]);
 
-  // ✅ Filter by brand if brand param exists
+  //  Filter by brand if brand param exists
   const filteredData = useMemo(() => {
     if (selectedBrand) {
       return data.filter(
@@ -51,6 +53,21 @@ const Products: React.FC = () => {
       setCurrentPage(page);
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
+  };
+
+  //  Add to Cart — now works per product
+  const handleAddToCart = (product: Product) => {
+    dispatch(
+      addToCart({
+        id: product.id,
+        name: product.name,
+        brand: product.brand,
+        price: product.price,
+        image: product.image,
+        type: "product",
+        quantity: 1,
+      })
+    );
   };
 
   return (
@@ -132,7 +149,10 @@ const Products: React.FC = () => {
                   ${product.price.toFixed(2)}
                 </span>
                 <div className="flex gap-3">
-                  <button className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
+                  <button
+                    onClick={() => handleAddToCart(product)}
+                    className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition cursor-pointer"
+                  >
                     <ShoppingCart size={20} />
                   </button>
                   <button className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition">
@@ -148,7 +168,6 @@ const Products: React.FC = () => {
       {/* Pagination */}
       {filteredData.length > itemsPerPage && (
         <div className="flex justify-center items-center gap-2 mt-10 flex-wrap">
-          {/* Previous */}
           <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
@@ -161,7 +180,6 @@ const Products: React.FC = () => {
             ◀ Prev
           </button>
 
-          {/* Numbered Pages */}
           {Array.from({ length: totalPages }).map((_, i) => (
             <button
               key={i}
@@ -176,7 +194,6 @@ const Products: React.FC = () => {
             </button>
           ))}
 
-          {/* Next */}
           <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}

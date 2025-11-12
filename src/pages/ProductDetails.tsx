@@ -70,7 +70,7 @@ const ProductDetails: React.FC = () => {
         brand: product.brand,
         price: product.price,
         image: product.image,
-        type: "product", // or "accessory"
+        type: "product",
         quantity: 1,
       })
     );
