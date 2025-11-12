@@ -7,14 +7,15 @@ import {
   clearCart,
 } from "@/app/features/cart/cartSlice";
 import { motion } from "framer-motion";
-import { Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Trash2, Plus, Minus, ShoppingBag, ArrowLeft } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Cart: React.FC = () => {
   const { items, totalPrice, totalQuantity } = useSelector(
     (state: RootState) => state.cart
   );
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleQuantityChange = (
     id: number,
@@ -26,6 +27,15 @@ const Cart: React.FC = () => {
 
   const handleRemove = (id: number, type: "product" | "accessory") => {
     dispatch(removeFromCart({ id, type }));
+  };
+
+  // ✅ Smart back navigation — go to the previous page, or fallback to /
+  const handleGoBack = () => {
+    if (window.history.length > 2) {
+      navigate(-1);
+    } else {
+      navigate("/");
+    }
   };
 
   if (items.length === 0) {
@@ -49,6 +59,15 @@ const Cart: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 py-12 px-6 md:px-16">
       <div className="max-w-6xl mx-auto">
+        {/* 🔙 Back Button */}
+        <button
+          onClick={handleGoBack}
+          className="flex items-center gap-2 text-blue-600 dark:text-blue-400 font-semibold mb-8 hover:underline hover:scale-105 transition-transform"
+        >
+          <ArrowLeft size={18} />
+          Back
+        </button>
+
         <h1 className="text-3xl font-bold mb-10 text-center text-blue-600 dark:text-blue-400">
           Your Shopping Cart
         </h1>
@@ -94,7 +113,7 @@ const Cart: React.FC = () => {
                     disabled={item.quantity <= 1}
                     className="p-2 cursor-pointer rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
                   >
-                    <Minus className="w-[10px] h-[10px] md:w-[16x] md:h-[16px]"></Minus>
+                    <Minus className="w-[10px] h-[10px] md:w-[16px] md:h-[16px]" />
                   </button>
                   <span className="text-sm md:text-lg font-medium w-6 text-center">
                     {item.quantity}
@@ -109,8 +128,9 @@ const Cart: React.FC = () => {
                     }
                     className="p-2 rounded-lg cursor-pointer bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition"
                   >
-                    <Plus className="w-[10px] h-[10px] md:w-[16x] md:h-[16px]"></Plus>
+                    <Plus className="w-[10px] h-[10px] md:w-[16px] md:h-[16px]" />
                   </button>
+
                   {/* Remove */}
                   <button
                     onClick={() => handleRemove(item.id, item.type)}
