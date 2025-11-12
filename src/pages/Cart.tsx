@@ -176,7 +176,7 @@ const Cart: React.FC = () => {
             </div>
 
             <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition-transform hover:scale-105">
-              Proceed to Checkout
+              <Link to="/checkout">Proceed to Checkout</Link>
             </button>
           </div>
         </div>

@@ -7,9 +7,13 @@ import Products from "./Product";
 import ProductDetails from "./ProductDetails";
 import Contact from "./Contact";
 import Categories from "./Categories";
+import Checkout from "./Checkout";
+import CheckoutSuccess from "./CheckoutSuccess";
 
 export {
   About,
+  Checkout,
+  CheckoutSuccess,
   Accessories,
   AccessoryDetails,
   Cart,
