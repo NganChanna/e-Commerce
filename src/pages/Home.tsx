@@ -176,7 +176,7 @@ const Section = ({
       </h2>
       <Link
         to={link}
-        className={`text-sm font-semibold text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition`}
+        className={`text-sm font-semibold text-blue-500 hover:text-blue-600 dark:hover:text-blue-400 transition cursor-pointer`}
       >
         View All →
       </Link>
@@ -229,7 +229,7 @@ const Section = ({
                 type === "accessory"
                   ? "bg-gradient-to-r from-emerald-500 to-green-400"
                   : "bg-gradient-to-r from-blue-600 to-cyan-500"
-              } text-white py-2 rounded-xl font-medium flex items-center justify-center gap-2 hover:scale-105 transition-transform`}
+              } text-white py-2 rounded-xl font-medium flex items-center justify-center gap-2 hover:scale-105 transition-transform cursor-pointer`}
             >
               <ShoppingCart size={16} /> Add to Cart
             </button>
