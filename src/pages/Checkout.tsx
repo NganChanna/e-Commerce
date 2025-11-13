@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
 import { ArrowLeft, CreditCard } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import type { RootState } from "@/app/store";
 
 const Checkout: React.FC = () => {
@@ -11,10 +11,41 @@ const Checkout: React.FC = () => {
     (state: RootState) => state.cart
   );
 
+  // 🧾 Form state
+  const [formData, setFormData] = useState({
+    name: "",
+    address: "",
+    paymentMethod: "Credit Card",
+  });
+
+  // Handle input
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleBack = () => navigate(-1);
 
-  const handlePlaceOrder = () => {
-    navigate("/checkoutsuccess");
+  // ✅ Handle order + pass data to success page
+  const handlePlaceOrder = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!formData.name || !formData.address) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    navigate("/checkoutsuccess", {
+      state: {
+        name: formData.name,
+        address: formData.address,
+        paymentMethod: formData.paymentMethod,
+        totalPrice,
+        totalQuantity,
+        items,
+      },
+    });
   };
 
   return (
@@ -91,19 +122,18 @@ const Checkout: React.FC = () => {
               Shipping & Payment
             </h2>
 
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handlePlaceOrder();
-              }}
-              className="space-y-4"
-            >
+            <form onSubmit={handlePlaceOrder} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1">
                   Full Name
                 </label>
                 <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   required
+                  placeholder="Enter your name"
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:ring-2 focus:ring-blue-500 outline-none"
                 />
               </div>
@@ -113,7 +143,12 @@ const Checkout: React.FC = () => {
                   Address
                 </label>
                 <input
+                  type="text"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
                   required
+                  placeholder="Enter your address"
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:ring-2 focus:ring-blue-500 outline-none"
                 />
               </div>
@@ -122,26 +157,25 @@ const Checkout: React.FC = () => {
                 <label className="block text-sm font-medium mb-1">
                   Payment Method
                 </label>
-                <select className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:ring-2 focus:ring-blue-500 outline-none">
+                <select
+                  name="paymentMethod"
+                  value={formData.paymentMethod}
+                  onChange={handleChange}
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 focus:ring-2 focus:ring-blue-500 outline-none"
+                >
                   <option>Credit Card</option>
                   <option>Cash on Delivery</option>
                   <option>PayPal</option>
                 </select>
               </div>
 
-              <Link to="/checkoutsuccess">
-                <button
-                  type="submit"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    handlePlaceOrder();
-                  }}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition-transform hover:scale-105 flex items-center justify-center gap-2"
-                >
-                  <CreditCard size={18} />
-                  Place Order
-                </button>
-              </Link>
+              <button
+                type="submit"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition-transform hover:scale-105 flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <CreditCard size={18} />
+                Place Order
+              </button>
             </form>
           </motion.div>
         </div>
