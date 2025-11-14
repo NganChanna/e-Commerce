@@ -14,6 +14,7 @@ import {
   Cart,
   Checkout,
   CheckoutSuccess,
+  NotFound,
 } from "./pages/index.ts";
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkoutsuccess" element={<CheckoutSuccess />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <footer>

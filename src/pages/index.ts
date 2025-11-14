@@ -9,9 +9,11 @@ import Contact from "./Contact";
 import Categories from "./Categories";
 import Checkout from "./Checkout";
 import CheckoutSuccess from "./CheckoutSuccess";
+import NotFound from "./NotFound";
 
 export {
   About,
+  NotFound,
   Checkout,
   CheckoutSuccess,
   Accessories,
