@@ -196,6 +196,10 @@ const Navbar = () => {
         }`}
       >
         <nav className="flex flex-col p-4 space-y-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200">
+          <div className="flex w-full md:hidden">
+            <SearchEngine />
+          </div>
+
           <Link
             to="/"
             onClick={() => setIsOpen(false)}
